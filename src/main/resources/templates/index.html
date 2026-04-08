@@ -1,35 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kastro's App</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kastro's Premium App</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <style>
+    /* Reset and global */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      overflow: hidden;
+      animation: backgroundShift 15s ease infinite;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .app-container {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 50px;
+      text-align: center;
+      max-width: 700px;
+      width: 90%;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .app-title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+      animation: floatTitle 4s ease-in-out infinite;
+    }
+
+    @keyframes floatTitle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .youtube-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+
+    .youtube-button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      padding: 15px 25px;
+      border-radius: 50px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
+    }
+
+    .youtube-button:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    }
+
+    .youtube-icon {
+      width: 30px;
+      height: 30px;
+      filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.4));
+      transition: transform 0.3s ease;
+    }
+
+    .youtube-button:hover .youtube-icon {
+      transform: rotate(15deg) scale(1.2);
+    }
+
+    .footer {
+      margin-top: 30px;
+      animation: fadeInUp 2s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .footer-message {
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 500;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .app-title { font-size: 2rem; }
+      .youtube-button { font-size: 1rem; padding: 12px 20px; }
+    }
+
+  </style>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Welcome Message -->
-        <h1 class="app-title">Welcome to Kastro's App</h1>
+  <div class="app-container">
+    <!-- Welcome Message -->
+    <h1 class="app-title">Welcome to Kastro's Premium App</h1>
 
-        <!-- Buttons with YouTube Icons for Docker and Nexus Courses -->
-        <div class="youtube-links">
-            <a href="https://www.youtube.com/playlist?list=PLs-PsDpuAuTeNx3OgGQ1QrpNBo-XE6VBh" target="_blank" class="youtube-button">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/YouTube_icon_%282013-2017%29.png" alt="YouTube Icon" class="youtube-icon">
-                Click Here for Docker Course
-            </a>
-            <a href="https://www.youtube.com/watch?v=opJAfDOCZuI" target="_blank" class="youtube-button">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/YouTube_icon_%282013-2017%29.png" alt="YouTube Icon" class="youtube-icon">
-                Click Here for Nexus Course
-            </a>
-        </div>
-
-        <!-- Footer Message -->
-        <div class="footer">
-            <h2 class="footer-message">Congratulations for learning SonarQube</h2>
-        </div>
+    <!-- Buttons with YouTube Icons for Docker and Nexus Courses -->
+    <div class="youtube-links">
+      <a href="https://www.youtube.com/playlist?list=PLs-PsDpuAuTeNx3OgGQ1QrpNBo-XE6VBh" target="_blank" class="youtube-button">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/YouTube_icon_%282013-2017%29.png" alt="YouTube Icon" class="youtube-icon">
+        Docker Course
+      </a>
+      <a href="https://www.youtube.com/watch?v=opJAfDOCZuI" target="_blank" class="youtube-button">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/YouTube_icon_%282013-2017%29.png" alt="YouTube Icon" class="youtube-icon">
+        Nexus Course
+      </a>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Footer Message -->
+    <div class="footer">
+      <h2 class="footer-message">Congratulations on learning SonarQube!</h2>
+    </div>
+  </div>
 </body>
 </html>
