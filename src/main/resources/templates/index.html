@@ -1,154 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kastro's Premium App</title>
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kastro's Ultra-Premium App</title>
 
-  <!-- Styles -->
-  <style>
-    /* Reset and global */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      overflow: hidden;
-      animation: backgroundShift 15s ease infinite;
-    }
+<!-- Styles -->
+<style>
+  /* Reset */
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
 
-    @keyframes backgroundShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
+  body, html {
+    width:100%; height:100%;
+    overflow:hidden;
+    background: #0f0c29;  /* fallback color */
+  }
 
-    .app-container {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(15px);
-      border-radius: 20px;
-      padding: 50px;
-      text-align: center;
-      max-width: 700px;
-      width: 90%;
-      animation: fadeIn 1.5s ease forwards;
-    }
+  /* Particle background canvas */
+  #particles {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    z-index: -1;
+  }
 
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(-50px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
+  /* App container */
+  .app-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 30px;
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    border-radius: 25px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 60px rgba(255,255,255,0.1);
+    animation: fadeIn 2s ease forwards;
+  }
 
-    .app-title {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 40px;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-      animation: floatTitle 4s ease-in-out infinite;
-    }
+  @keyframes fadeIn {
+    0% { opacity:0; transform: scale(0.9); }
+    100% { opacity:1; transform: scale(1); }
+  }
 
-    @keyframes floatTitle {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+  /* Title */
+  .app-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 50px;
+    text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,0,150,0.3);
+    animation: glowText 2s ease-in-out infinite alternate, floatTitle 4s ease-in-out infinite;
+  }
 
-    .youtube-links {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 50px;
-    }
+  @keyframes glowText {
+    0% { text-shadow: 0 0 10px #fff, 0 0 20px #ff00aa, 0 0 30px #ff00aa; }
+    100% { text-shadow: 0 0 20px #fff, 0 0 40px #ff00aa, 0 0 60px #ff00aa; }
+  }
 
-    .youtube-button {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: linear-gradient(135deg, #ff416c, #ff4b2b);
-      padding: 15px 25px;
-      border-radius: 50px;
-      color: #fff;
-      font-weight: 600;
-      font-size: 1.1rem;
-      text-decoration: none;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
-    }
+  @keyframes floatTitle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
 
-    .youtube-button:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 25px rgba(0,0,0,0.3);
-      background: linear-gradient(135deg, #ff4b2b, #ff416c);
-    }
+  /* Buttons */
+  .youtube-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
 
-    .youtube-icon {
-      width: 30px;
-      height: 30px;
-      filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.4));
-      transition: transform 0.3s ease;
-    }
+  .youtube-button {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    box-shadow: 0 10px 30px rgba(255,0,150,0.4);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
 
-    .youtube-button:hover .youtube-icon {
-      transform: rotate(15deg) scale(1.2);
-    }
+  .youtube-button::before {
+    content:'';
+    position:absolute;
+    top:0; left:-100%;
+    width:100%; height:100%;
+    background: rgba(255,255,255,0.2);
+    transform: skewX(-25deg);
+    transition: 0.5s;
+  }
 
-    .footer {
-      margin-top: 30px;
-      animation: fadeInUp 2s ease forwards;
-    }
+  .youtube-button:hover::before {
+    left:200%;
+  }
 
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
+  .youtube-button:hover {
+    transform: scale(1.1) rotateZ(1deg);
+    box-shadow: 0 15px 40px rgba(255,0,150,0.6);
+  }
 
-    .footer-message {
-      color: #fff;
-      font-size: 1.5rem;
-      font-weight: 500;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-    }
+  .youtube-icon {
+    width: 35px;
+    height: 35px;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
+    transition: transform 0.5s ease;
+  }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      .app-title { font-size: 2rem; }
-      .youtube-button { font-size: 1rem; padding: 12px 20px; }
-    }
+  .youtube-button:hover .youtube-icon {
+    transform: rotate(20deg) scale(1.2);
+  }
 
-  </style>
+  /* Footer */
+  .footer-message {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    animation: pulseText 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseText {
+    0%,100% { transform: scale(1); text-shadow:0 0 10px #fff; }
+    50% { transform: scale(1.05); text-shadow:0 0 25px #ff00aa; }
+  }
+
+  /* Responsive */
+  @media(max-width:600px) {
+    .app-title { font-size:2rem; }
+    .youtube-button { font-size:1rem; padding:12px 20px; }
+  }
+
+</style>
 </head>
 <body>
-  <div class="app-container">
-    <!-- Welcome Message -->
-    <h1 class="app-title">Welcome to Kastro's Premium App</h1>
 
-    <!-- Buttons with YouTube Icons for Docker and Nexus Courses -->
-    <div class="youtube-links">
-      <a href="https://www.youtube.com/playlist?list=PLs-PsDpuAuTeNx3OgGQ1QrpNBo-XE6VBh" target="_blank" class="youtube-button">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/YouTube_icon_%282013-2017%29.png" alt="YouTube Icon" class="youtube-icon">
-        Docker Course
-      </a>
-      <a href="https://www.youtube.com/watch?v=opJAfDOCZuI" target="_blank" class="youtube-button">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/YouTube_icon_%282013-2017%29.png" alt="YouTube Icon" class="youtube-icon">
-        Nexus Course
-      </a>
-    </div>
+<!-- Particle Background -->
+<canvas id="particles"></canvas>
 
-    <!-- Footer Message -->
-    <div class="footer">
-      <h2 class="footer-message">Congratulations on learning SonarQube!</h2>
-    </div>
+<!-- App Content -->
+<div class="app-container">
+  <h1 class="app-title">Welcome to Kastro's Ultra-Premium App</h1>
+  <div class="youtube-links">
+    <a href="https://www.youtube.com/playlist?list=PLs-PsDpuAuTeNx3OgGQ1QrpNBo-XE6VBh" target="_blank" class="youtube-button">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/YouTube_icon_%282013-2017%29.png" class="youtube-icon">
+      Docker Course
+    </a>
+    <a href="https://www.youtube.com/watch?v=opJAfDOCZuI" target="_blank" class="youtube-button">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/YouTube_icon_%282013-2017%29.png" class="youtube-icon">
+      Nexus Course
+    </a>
   </div>
+  <div class="footer">
+    <h2 class="footer-message">Congratulations on learning SonarQube!</h2>
+  </div>
+</div>
+
+<!-- Particle JS -->
+<script>
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  const colors = ['#ff416c','#ff4b2b','#6a11cb','#2575fc','#00fff0'];
+
+  for(let i=0;i<100;i++){
+    particles.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*3 + 1,
+      dx: (Math.random()-0.5)*1.5,
+      dy: (Math.random()-0.5)*1.5,
+      color: colors[Math.floor(Math.random()*colors.length)]
+    });
+  }
+
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      p.x += p.dx; p.y += p.dy;
+      if(p.x < 0 || p.x>canvas.width) p.dx*=-1;
+      if(p.y < 0 || p.y>canvas.height) p.dy*=-1;
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  window.addEventListener('resize',()=>{ canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+</script>
+
 </body>
 </html>
